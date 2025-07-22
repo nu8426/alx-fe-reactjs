@@ -3,6 +3,9 @@ import AddRecipeForm from './components/AddRecipeForm';
 import RecipeList from './components/RecipeList';
 import RecipeDetails from './components/RecipeDetails';
 import SearchBar from './components/SearchBar';
+import FavoriteButton from './components/FavoriteButton';
+import FavoritesList from './components/FavoritesList';
+import RecommendationsList from './components/RecommendationsList';
 
 function App() {
   return (
@@ -17,6 +20,11 @@ function App() {
                 <SearchBar />
                 <AddRecipeForm />
                 <RecipeList />
+                <FavoritesList />
+               <RecommendationsList />
+                <FavoriteButton recipeId={recipe.id} />
+
+
               </>
             }
           />
