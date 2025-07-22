@@ -1,11 +1,11 @@
 import { useParams } from 'react-router-dom';
-import useRecipeStore from './recipeStore';
+import { useRecipeStore } from './recipeStore'; 
 import EditRecipeForm from './EditRecipeForm';
 import DeleteRecipeButton from './DeleteRecipeButton';
 
 const RecipeDetails = () => {
   const { id } = useParams();
-  const recipeId = parseInt(id);
+  const recipeId = parseInt(id, 10); // convert route param to number
   const recipe = useRecipeStore((state) =>
     state.recipes.find((r) => r.id === recipeId)
   );
@@ -15,9 +15,12 @@ const RecipeDetails = () => {
   return (
     <div>
       <h2>{recipe.title}</h2>
+      <p><strong>ID:</strong> {recipe.id}</p> 
       <p>{recipe.description}</p>
+
+     
       <EditRecipeForm recipe={recipe} />
-      <DeleteRecipeButton recipeId={recipeId} />
+      <DeleteRecipeButton recipeId={recipe.id} />
     </div>
   );
 };
