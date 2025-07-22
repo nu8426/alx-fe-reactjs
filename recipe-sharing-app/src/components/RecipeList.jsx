@@ -10,7 +10,7 @@ const RecipeList = () => {
       {recipes.map((recipe) => (
         <div
           key={recipe.id}
-          style={{ border: '1px solid #ccc', margin: '10px', padding: '10px' }}
+          style={{ border: '1px solid #ccc', margin: '10px', padding: '11px' }}
         >
           <h3>{recipe.title}</h3>
           <p>{recipe.description}</p>
