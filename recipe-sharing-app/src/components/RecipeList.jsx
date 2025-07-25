@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom'; // ✅ Required for navigation
+import { Link } from 'react-router-dom'; // ✅ Import Link
 import { useRecipeStore } from '../store/recipeStore';
 
 const RecipeList = () => {
@@ -12,7 +12,7 @@ const RecipeList = () => {
       ) : (
         filteredRecipes.map((recipe, index) => (
           <div key={index} style={{ marginBottom: '20px' }}>
-            {/* ✅ Add Link around the title */}
+            {/* ✅ Make title a clickable Link */}
             <h3>
               <Link to={`/recipe/${recipe.id}`} style={{ textDecoration: 'none', color: '#2c3e50' }}>
                 {recipe.title}
