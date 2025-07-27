@@ -1,17 +1,20 @@
 import React from 'react';
-import FavoritesList from './components/FavoritesList';
-import RecommendationsList from './components/RecommendationsList';
-import RecipeList from './components/RecipeList'; // Existing
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
-function App() {
+import RecipeList from './components/RecipeList';
+import AddRecipeForm from './components/AddRecipeForm';
+import RecipeDetail from './components/RecipeDetail';
+
+const App = () => {
   return (
-    <div>
-      <h1>Recipe Sharing App</h1>
-      <RecipeList />
-      <FavoritesList />
-      <RecommendationsList />
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<RecipeList />} />
+        <Route path="/add" element={<AddRecipeForm />} />
+        <Route path="/recipe/:id" element={<RecipeDetail />} />
+      </Routes>
+    </Router>
   );
-}
+};
 
 export default App;

@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { useRecipeStore } from '../store/recipeStore';
 
 const RecipeList = () => {
@@ -12,12 +11,7 @@ const RecipeList = () => {
       ) : (
         filteredRecipes.map((recipe, index) => (
           <div key={index} style={{ marginBottom: '20px' }}>
-            {/* ✅ Make title a clickable Link */}
-            <h3>
-              <Link to={`/recipe/${recipe.id}`} style={{ textDecoration: 'none', color: '#2c3e50' }}>
-                {recipe.title}
-              </Link>
-            </h3>
+            <h3>{recipe.title}</h3>
             <p>{recipe.description}</p>
             <p><strong>Time:</strong> {recipe.time} mins</p>
           </div>
