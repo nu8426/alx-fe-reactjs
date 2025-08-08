@@ -7,11 +7,7 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-<<<<<<< HEAD
 node_modules
-=======
-node_modules/
->>>>>>> e5ef582 (Set up Tailwind CSS with Vite and React)
 dist
 dist-ssr
 *.local
