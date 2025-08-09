@@ -1,11 +1,5 @@
 {
-<<<<<<< HEAD
-  "devDependencies": {
-    "@tailwindcss/postcss": "^4.1.11"
-  }
-}
-=======
-  "name": "my-company",
+  "name": "alx-react-app-new",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -31,4 +25,3 @@
     "vite": "^7.0.4"
   }
 }
->>>>>>> 8d4adc4a6692b25e49de4019d3e934ef00cb2059

@@ -1,11 +1,5 @@
 {
-<<<<<<< HEAD
-  "devDependencies": {
-    "@tailwindcss/postcss": "^4.1.11"
-  }
-}
-=======
-  "name": "my-company",
+  "name": "recipe-sharing-app",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -17,7 +11,9 @@
   },
   "dependencies": {
     "react": "^19.1.0",
-    "react-dom": "^19.1.0"
+    "react-dom": "^19.1.0",
+    "react-router-dom": "^7.7.1",
+    "zustand": "^5.0.7"
   },
   "devDependencies": {
     "@eslint/js": "^9.30.1",
@@ -31,4 +27,3 @@
     "vite": "^7.0.4"
   }
 }
->>>>>>> 8d4adc4a6692b25e49de4019d3e934ef00cb2059
