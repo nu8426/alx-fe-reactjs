@@ -1,7 +1,7 @@
-export default function App() {
-  return (
-    <div className="text-4xl font-bold text-blue-600 p-4">
-      Hello Tailwind!
-    </div>
-  );
+import UserProfile from "./components/UserProfile";
+
+function App() {
+  return <UserProfile />;
 }
+
+export default App;
