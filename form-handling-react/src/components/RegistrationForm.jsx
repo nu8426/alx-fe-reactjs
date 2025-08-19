@@ -1,32 +1,28 @@
 import { useState } from "react";
 
 export default function RegistrationForm() {
-  const [formValues, setFormValues] = useState({
-    username: "",
-    email: "",
-    password: "",
-  });
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const [errors, setErrors] = useState({});
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormValues({ ...formValues, [name]: value });
-  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
     const newErrors = {};
-    if (!formValues.username) newErrors.username = "Username is required";
-    if (!formValues.email) newErrors.email = "Email is required";
-    if (!formValues.password) newErrors.password = "Password is required";
+    if (!username) newErrors.username = "Username is required";
+    if (!email) newErrors.email = "Email is required";
+    if (!password) newErrors.password = "Password is required";
 
     setErrors(newErrors);
 
     if (Object.keys(newErrors).length === 0) {
-      console.log("Controlled Registration Data:", formValues);
-      setFormValues({ username: "", email: "", password: "" });
+      console.log("Controlled Registration Data:", { username, email, password });
+
+      setUsername("");
+      setEmail("");
+      setPassword("");
     }
   };
 
@@ -36,9 +32,8 @@ export default function RegistrationForm() {
         <label>Username:</label>
         <input
           type="text"
-          name="username"
-          value={formValues.username}
-          onChange={handleChange}
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
         />
         {errors.username && <div style={{ color: "red" }}>{errors.username}</div>}
       </div>
@@ -47,9 +42,8 @@ export default function RegistrationForm() {
         <label>Email:</label>
         <input
           type="email"
-          name="email"
-          value={formValues.email}
-          onChange={handleChange}
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
         />
         {errors.email && <div style={{ color: "red" }}>{errors.email}</div>}
       </div>
@@ -58,9 +52,8 @@ export default function RegistrationForm() {
         <label>Password:</label>
         <input
           type="password"
-          name="password"
-          value={formValues.password}
-          onChange={handleChange}
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
         />
         {errors.password && <div style={{ color: "red" }}>{errors.password}</div>}
       </div>
