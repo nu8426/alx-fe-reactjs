@@ -1,16 +1,7 @@
-import React, { useState } from "react";
-import { BrowserRouter as Router, Routes, Route, Link, Navigate } from "react-router-dom";
-import Home from "./components/Home.jsx";
-import Profile from "./components/Profile.jsx";
-import Login from "./components/Login.jsx";
-import ProtectedRoute from "./components/ProtectedRoute.jsx";
-import BlogPost from "./components/BlogPost.jsx";
+import useAuth from "./hooks/useAuth.jsx";
 
 export default function App() {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-
-  const login = () => setIsAuthenticated(true);
-  const logout = () => setIsAuthenticated(false);
+  const { isAuthenticated, login, logout } = useAuth();
 
   return (
     <Router>
@@ -26,31 +17,12 @@ export default function App() {
       </nav>
 
       <Routes>
-        {/* Public routes */}
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login login={login} />} />
 
-        {/* Protected profile route with nested routes */}
-        <Route
-          path="/profile/:id/*"
-          element={
-            <ProtectedRoute isAuthenticated={isAuthenticated}>
-              <Profile />
-            </ProtectedRoute>
-          }
-        />
+        <Route path="/profile/:id/*" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
+        <Route path="/blog/:id" element={<ProtectedRoute><BlogPost /></ProtectedRoute>} />
 
-        {/* Protected dynamic blog post route */}
-        <Route
-          path="/blog/:id"
-          element={
-            <ProtectedRoute isAuthenticated={isAuthenticated}>
-              <BlogPost />
-            </ProtectedRoute>
-          }
-        />
-
-        {/* Fallback for undefined routes */}
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </Router>
