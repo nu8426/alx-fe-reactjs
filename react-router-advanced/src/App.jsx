@@ -4,6 +4,7 @@ import Home from "./components/Home.jsx";
 import Profile from "./components/Profile.jsx";
 import Login from "./components/Login.jsx";
 import ProtectedRoute from "./components/ProtectedRoute.jsx";
+import BlogPost from "./components/BlogPost.jsx";
 
 export default function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -16,6 +17,7 @@ export default function App() {
       <nav>
         <Link to="/">Home</Link> |{" "}
         <Link to="/profile/123">Profile</Link> |{" "}
+        <Link to="/blog/101">Blog Post</Link> |{" "}
         {isAuthenticated ? (
           <button onClick={logout}>Logout</button>
         ) : (
@@ -24,10 +26,11 @@ export default function App() {
       </nav>
 
       <Routes>
+        {/* Public routes */}
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login login={login} />} />
-        
-        {/* Protected & dynamic route */}
+
+        {/* Protected profile route with nested routes */}
         <Route
           path="/profile/:id/*"
           element={
@@ -37,6 +40,17 @@ export default function App() {
           }
         />
 
+        {/* Protected dynamic blog post route */}
+        <Route
+          path="/blog/:id"
+          element={
+            <ProtectedRoute isAuthenticated={isAuthenticated}>
+              <BlogPost />
+            </ProtectedRoute>
+          }
+        />
+
+        {/* Fallback for undefined routes */}
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </Router>
