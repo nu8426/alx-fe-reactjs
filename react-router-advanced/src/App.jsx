@@ -15,7 +15,7 @@ export default function App() {
     <Router>
       <nav>
         <Link to="/">Home</Link> |{" "}
-        <Link to="/profile">Profile</Link> |{" "}
+        <Link to="/profile/123">Profile</Link> |{" "}
         {isAuthenticated ? (
           <button onClick={logout}>Logout</button>
         ) : (
@@ -26,14 +26,17 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login login={login} />} />
+        
+        {/* Protected & dynamic route */}
         <Route
-          path="/profile/*"
+          path="/profile/:id/*"
           element={
             <ProtectedRoute isAuthenticated={isAuthenticated}>
               <Profile />
             </ProtectedRoute>
           }
         />
+
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </Router>
