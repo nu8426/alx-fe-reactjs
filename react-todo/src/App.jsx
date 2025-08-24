@@ -1,7 +1,7 @@
 import React from "react";
-import TodoList from "./components/TodoList.jsx"; // correct import
+import TodoList from "./components/TodoList";
 
-export default function App() {
+function App() {
   return (
     <div>
       <h1>React Todo App</h1>
@@ -9,3 +9,5 @@ export default function App() {
     </div>
   );
 }
+
+export default App;
