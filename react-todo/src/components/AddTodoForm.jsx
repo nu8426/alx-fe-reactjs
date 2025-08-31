@@ -18,8 +18,9 @@ export default function AddTodoForm({ addTodo }) {
         placeholder="Add todo"
         value={value}
         onChange={(e) => setValue(e.target.value)}
+        data-testid="todo-input"
       />
-      <button type="submit">Add</button>
+      <button type="submit" data-testid="add-button">Add</button>
     </form>
   );
 }
