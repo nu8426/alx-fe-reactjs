@@ -1,7 +1,6 @@
-// src/tests/TodoList.test.jsx
+import React from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
-import { describe, test, expect } from "vitest"; // <-- import from vitest
-import TodoList from "../components/TodoList";
+import TodoList from "../TodoList";
 
 describe("TodoList Component", () => {
   test("renders initial todos", () => {
@@ -10,26 +9,32 @@ describe("TodoList Component", () => {
     expect(screen.getByText("Build a project")).toBeInTheDocument();
   });
 
-  test("can add a new todo", () => {
+  test("adds a new todo", () => {
     render(<TodoList />);
-    const input = screen.getByPlaceholderText("Add todo");
+    const input = screen.getByPlaceholderText("Add new todo");
+    const addButton = screen.getByText("Add");
+
     fireEvent.change(input, { target: { value: "New Task" } });
-    fireEvent.submit(input.closest("form"));
+    fireEvent.click(addButton);
+
     expect(screen.getByText("New Task")).toBeInTheDocument();
   });
 
-  test("can toggle a todo", () => {
+  test("toggles a todo completion", () => {
     render(<TodoList />);
     const todo = screen.getByText("Learn React");
     fireEvent.click(todo);
     expect(todo).toHaveStyle("text-decoration: line-through");
+    fireEvent.click(todo);
+    expect(todo).toHaveStyle("text-decoration: none");
   });
 
-  test("can delete a todo", () => {
+  test("deletes a todo", () => {
     render(<TodoList />);
     const todo = screen.getByText("Learn React");
-    const deleteBtn = todo.querySelector("button");
-    fireEvent.click(deleteBtn);
-    expect(screen.queryByText("Learn React")).not.toBeInTheDocument();
+    const deleteButton = screen.getAllByText("Delete")[0];
+
+    fireEvent.click(deleteButton);
+    expect(todo).not.toBeInTheDocument();
   });
 });
