@@ -1,6 +1,8 @@
+// src/components/TodoList.jsx
 import React, { useState } from "react";
 import AddTodoForm from "./AddTodoForm.jsx";
 
+// Initial todos required by the project
 const initialTodos = [
   { id: 1, text: "Learn React", completed: false },
   { id: 2, text: "Build a project", completed: false }
@@ -9,10 +11,12 @@ const initialTodos = [
 export default function TodoList() {
   const [todos, setTodos] = useState(initialTodos);
 
+  // Add a new todo
   const addTodo = (text) => {
     setTodos([...todos, { id: Date.now(), text, completed: false }]);
   };
 
+  // Toggle a todo's completion
   const toggleTodo = (id) => {
     setTodos(
       todos.map((todo) =>
@@ -21,6 +25,7 @@ export default function TodoList() {
     );
   };
 
+  // Delete a todo
   const deleteTodo = (id) => {
     setTodos(todos.filter((todo) => todo.id !== id));
   };
