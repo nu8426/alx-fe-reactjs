@@ -1,6 +1,7 @@
 // src/__tests__/TodoList.test.js
 import React from "react";
-import { render, screen, fireEvent } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import "@testing-library/jest-dom";
 import TodoList from "../components/TodoList.jsx";
 
@@ -10,26 +11,26 @@ test("renders initial todos", () => {
   expect(screen.getByText("Build a project")).toBeInTheDocument();
 });
 
-test("adds a new todo", () => {
+test("adds a new todo", async () => {
   render(<TodoList />);
-  fireEvent.change(screen.getByPlaceholderText("Add todo"), {
-    target: { value: "Test Todo" }
-  });
-  fireEvent.click(screen.getByText("Add"));
+  const input = screen.getByPlaceholderText("Add todo");
+  await userEvent.type(input, "Test Todo");
+  const addButton = screen.getByText("Add");
+  await userEvent.click(addButton);
   expect(screen.getByText("Test Todo")).toBeInTheDocument();
 });
 
-test("toggles a todo completion", () => {
+test("toggles a todo completion", async () => {
   render(<TodoList />);
   const todo = screen.getByText("Learn React");
-  fireEvent.click(todo);
+  await userEvent.click(todo);
   expect(todo).toHaveStyle("text-decoration: line-through");
 });
 
-test("deletes a todo", () => {
+test("deletes a todo", async () => {
   render(<TodoList />);
   const todo = screen.getByText("Learn React");
   const deleteButton = screen.getAllByText("Delete")[0];
-  fireEvent.click(deleteButton);
+  await userEvent.click(deleteButton);
   expect(todo).not.toBeInTheDocument();
 });
