@@ -3,7 +3,7 @@ import React from "react";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import "@testing-library/jest-dom";
-import TodoList from "../components/TodoList.jsx";
+import TodoList from "../components/TodoList.js";
 
 test("renders initial todos", () => {
   render(<TodoList />);
